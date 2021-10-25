@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagramfinder/UI/ResultPage.dart';
+import 'package:instagramfinder/UI/HomePage.dart';
 import 'package:instagramfinder/ViewModels/history_page_view_model.dart';
 import 'package:stacked/stacked.dart';
 

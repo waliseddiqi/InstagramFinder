@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagramfinder/UI/HistoryPage.dart';
-import 'package:instagramfinder/UI/ResultPage.dart';
+import 'package:instagramfinder/UI/HomePage.dart';
 import 'package:instagramfinder/UI/components/instagramLogo.dart';
 import 'package:instagramfinder/ViewModels/search_page_view_model.dart';
 import 'package:stacked/stacked.dart';

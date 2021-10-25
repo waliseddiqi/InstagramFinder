@@ -55,20 +55,20 @@ class GetRequest extends Request{
 }
 
 
-///non cachable maybe can be usable in testing
-///or we can have mock request that instead of calling dio we can have some data for testing (not calling instagram api)
-// class NonCachableRequest extends Request {
-//   @override
-//   Future<Response> callRequest(String url)async {
-//      Dio dio  = Dio();
+// /non cachable maybe can be usable in testing
+// /or we can have mock request that instead of calling dio we can have some data for testing (not calling instagram api)
+class NonCachableRequest extends Request {
+  @override
+  Future<Response> callRequest(String url)async {
+     Dio dio  = Dio();
    
    
-//     var response = await dio.get(url, options: Options(headers: {
-//         "Content-Type": "application/json", 
-//     }));
-//     ///handling response 
-//    // response = await ApiHandler.handle(response);
-//     return response;
-//   }
+    var response = await dio.get(url, options: Options(headers: {
+        "Content-Type": "application/json", 
+    }));
+    ///handling response 
+   // response = await ApiHandler.handle(response);
+    return response;
+  }
 
-// }
+}
