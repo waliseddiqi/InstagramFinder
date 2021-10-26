@@ -36,9 +36,8 @@ void saveStringItemToDisk(String key,String item){
   }
   DateTime time = DateTime.now();
   _list?.add(item+"t:"+"${time.year}/${time.month}/${time.day}   ${time.hour} : ${time.minute}");
-  ///also remove duplicates
-   List<String> result = LinkedHashSet<String>.from(_list??[]).toList();
-  _preferences?.setStringList(key, result);
+  
+  _preferences?.setStringList(key, _list??[]);
 
 }
 

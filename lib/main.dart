@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     
     return MaterialApp(
-      title: 'Instagram Finer',
+      title: 'Instagram Finder',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         

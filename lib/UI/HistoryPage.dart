@@ -50,7 +50,7 @@ class HistoryPage extends StatelessWidget{
               borderRadius: BorderRadius.circular(15),
 
           onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context)=>ResultPage(userName: savedString,)));
+              Navigator.push(context, MaterialPageRoute(builder:(context)=>ResultPage(userName: savedString.split("t:")[0],)));
           },
           child: Container(
             height: size.height/15,
