@@ -31,7 +31,7 @@ class ResultPage extends StatelessWidget{
            shadowColor: Colors.transparent,),
         body: Center(
           child: model.isBusy?CircularProgressIndicator():
-           model.hasError?Text("Error"):
+           model.hasError?Text("Error loading data",style: TextStyle(fontSize: size.height/50),):
           Container(
             height: size.height,
             child: ListView(
