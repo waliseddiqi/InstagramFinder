@@ -27,24 +27,22 @@ class GetRequest extends Request{
      Options _cacheOptions = buildCacheOptions(Duration(days: cacheLifeTime!=null?0:1,seconds: cacheLifeTime??0),options: Options(      headers: {
         "Content-Type": "application/json", 
       },
-      // followRedirects: false,
-      //       validateStatus: (status) {
-      //         return status! < 500;
-      //       },
-      
+
       ));
+   
    
     dio.interceptors.add(_dioCacheManager.interceptor);
    
+   try {
     var response = await dio.get(url, options: _cacheOptions);
-    return response;
-    //   return await ApiHandler.handle(response);
+     return await ApiHandler.handle(response);
+     
+   } catch (e) {
+     throw e;
+   }
     
-    // } on TimeoutException{
-    //   throw TimeOutException("Time out exceptio caught");
-    // }  on SocketException{
-    //   throw SocketException("Socket exception caught");
-    // }
+    
+
   
 
  

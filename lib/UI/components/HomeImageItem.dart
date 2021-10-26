@@ -5,8 +5,9 @@ import 'package:instagramfinder/UI/components/HomeImageHero.dart';
 class UserPostItem extends StatelessWidget{
   final String? postUrl;
   final String? caption;
-  final int? likeCounts;
-  const UserPostItem({Key? key, this.postUrl, this.caption, this.likeCounts}) : super(key: key);
+  final String? likeCounts;
+  final String? commentsCount;
+  const UserPostItem({Key? key, this.postUrl, this.caption, this.likeCounts, this.commentsCount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +56,34 @@ class UserPostItem extends StatelessWidget{
                 children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Icon(Icons.favorite,size: size.height/30,color: Theme.of(context).scaffoldBackgroundColor,),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: Icon(Icons.favorite,size: size.height/55,color: Theme.of(context).scaffoldBackgroundColor,),
+                              ),
+                                Padding(padding: const EdgeInsets.all(1.0),
+                            child: Text("$likeCounts",style: TextStyle(fontSize: size.height/70,color: Theme.of(context).scaffoldBackgroundColor),),
+                          ),
+                            ],
+                          ),
                         ),
-                        Padding(padding: const EdgeInsets.all(1.0),
-                        child: Text("$likeCounts",style: TextStyle(fontSize: size.height/55,color: Theme.of(context).scaffoldBackgroundColor),),
+                      
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Padding(
+                          padding: const EdgeInsets.all(1.0),
+                          child: Icon(Icons.comment,size: size.height/55,color: Theme.of(context).scaffoldBackgroundColor,),
+                        ),
+                         Padding(padding: const EdgeInsets.all(1.0),
+                        child: Text("$commentsCount",style: TextStyle(fontSize: size.height/70,color: Theme.of(context).scaffoldBackgroundColor),),
                         )
+                                ],
+                              ),
+                            ),
+                       
                 ],
               ),
                      ),

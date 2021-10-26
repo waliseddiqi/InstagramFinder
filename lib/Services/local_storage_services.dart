@@ -25,7 +25,8 @@ static String historyListKey  = "historyListKey";
 
 
 void saveStringItemToDisk(String key,String item){
-  
+  ///just simple way of saving data as key value using SharedPreferences 
+  ///for more intense local storage we can use SQLITE or HIVE that I used before
   List<String>? _list =[];
   _list =  _preferences!.getStringList(key);
   if((_list?.length??0)==10){
@@ -33,7 +34,8 @@ void saveStringItemToDisk(String key,String item){
     _list?.removeAt(_list.length-1);
 
   }
-  _list?.add(item);
+  DateTime time = DateTime.now();
+  _list?.add(item+"t:"+"${time.year}/${time.month}/${time.day}   ${time.hour} : ${time.minute}");
   ///also remove duplicates
    List<String> result = LinkedHashSet<String>.from(_list??[]).toList();
   _preferences?.setStringList(key, result);

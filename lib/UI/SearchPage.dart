@@ -45,6 +45,7 @@ class SearchPage extends StatelessWidget{
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(onPressed: (){
+                ///Navigation to History Page
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>HistoryPage()));
               }, icon: Icon(Icons.history))
             ],

@@ -8,23 +8,33 @@ class HistoryPage extends StatelessWidget{
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return SafeArea(child: Scaffold(
-      appBar: AppBar(
-
-
-      ),
-      body: Center(
-        child:   ViewModelBuilder<HistoryPageViewModel>.reactive(
+    return  ViewModelBuilder<HistoryPageViewModel>.reactive(
       disposeViewModel: true,
       viewModelBuilder: () => HistoryPageViewModel(),
 
       builder: (context, model, child)=>
-           ListView.builder(
-            itemCount: model.getSavedList()?.length??0,
-            itemBuilder: (context,index)=>savedItem(size,model.getSavedList()![index],context)),
-        ),
+       SafeArea(child: Scaffold(
+         appBar: AppBar(
+
+           title:Row(
+             mainAxisAlignment: MainAxisAlignment.end,
+             children: [
+                IconButton(onPressed: (){
+                  model.removeAllList();
+                  ///remove all saved history
+                }, icon: Icon(Icons.delete))
+             ],
+           ) 
+         ),
+         body: Center(
+           child:  
+              ListView.builder(
+               itemCount: model.getSavedList()?.length??0,
+               itemBuilder: (context,index)=>savedItem(size,model.getSavedList()![index],context)),
+           ),
+         ),
       ),
-    ));
+    );
   }
 
 
@@ -43,14 +53,20 @@ class HistoryPage extends StatelessWidget{
               Navigator.push(context, MaterialPageRoute(builder:(context)=>ResultPage(userName: savedString,)));
           },
           child: Container(
-            height: size.height/10,
+            height: size.height/15,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Center(child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(savedString,style: TextStyle(fontSize: size.height/45,color: Theme.of(context).scaffoldBackgroundColor)),
-            ))),
+            child: ListTile(
+              leading:   Text(savedString.split("t:")[0],style: TextStyle(fontSize: size.height/45,color: Theme.of(context).scaffoldBackgroundColor)),
+          
+              trailing:  Text(savedString.split("t:")[1],style: TextStyle(fontSize: size.height/45,color: Theme.of(context).scaffoldBackgroundColor)),
+
+            
+            ),
+      
+            
+            ),
         ),
       ),
     );

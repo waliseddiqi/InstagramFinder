@@ -7,12 +7,13 @@ class UserDetailsBar extends StatelessWidget{
   final String? profileURL;
   final String? userName;
   final String? fullName;
-  final int? followersCount;
-  final int? followingCount;
+  final String? followersCount;
+  final String? followingCount;
   final String? biography;
   final bool? isVerified;
   final String? url;
-  const UserDetailsBar({Key? key, this.profileURL, this.userName, this.fullName, this.followersCount, this.followingCount, this.biography, this.isVerified, this.url}) : super(key: key);
+  final bool? isPrivate;
+  const UserDetailsBar({Key? key, this.profileURL, this.userName, this.fullName, this.followersCount, this.followingCount, this.biography, this.isVerified, this.url, this.isPrivate}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class UserDetailsBar extends StatelessWidget{
             width: MediaQuery.of(context).size.width,
             height: size.height/3.5,
             ///if the profile is private show less vibrant color
-            color: Theme.of(context).primaryColor
+            color:(isPrivate??false)?Colors.grey:Theme.of(context).primaryColor
           ),
           clipper: CustomClipPath()),
                

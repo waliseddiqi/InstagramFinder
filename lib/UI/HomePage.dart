@@ -23,14 +23,15 @@ class ResultPage extends StatelessWidget{
       },
       builder: (context, model, child) {
         User? user = model.data?.graphql?.user;
-      return  model.hasError?Text("Error"):
+      return 
        SafeArea(child: Scaffold(
          appBar: AppBar(
            ///checking if it is private account (for color of appBar)
-           backgroundColor: (user?.isPrivate??true)?Theme.of(context).secondaryHeaderColor:Theme.of(context).primaryColor,
+           backgroundColor: (user?.isPrivate??false)?Colors.grey:Theme.of(context).primaryColor,
            shadowColor: Colors.transparent,),
         body: Center(
           child: model.isBusy?CircularProgressIndicator():
+           model.hasError?Text("Error"):
           Container(
             height: size.height,
             child: ListView(
@@ -41,12 +42,13 @@ class ResultPage extends StatelessWidget{
                 UserDetailsBar(
                   fullName: user?.fullName,
                   userName: user?.username,
-                  followersCount: user?.edgeFollowedBy?.count,
-                  followingCount: user?.edgeFollow?.count,
+                  followersCount:model.formatFollowersAndLikes((user?.edgeFollowedBy?.count)??0),
+                  followingCount:model.formatFollowersAndLikes((user?.edgeFollow?.count)??0),
                   profileURL: user?.profilePicUrlHd,
                   biography: user?.biography,
                   isVerified: user?.isVerified,
                   url: user?.externalUrl,
+                  isPrivate: user?.isPrivate,
                 ),
                 ////user posts
                 Container(
@@ -73,7 +75,7 @@ class ResultPage extends StatelessWidget{
                           gridDelegate:  new SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     mainAxisSpacing: 1,
-                                    childAspectRatio: size.aspectRatio*1.2),
+                                    childAspectRatio: size.height/1400),
                           scrollDirection: Axis.vertical,
                          
                           itemCount: user?.edgeOwnerToTimelineMedia?.edges?.length??0,
@@ -81,7 +83,9 @@ class ResultPage extends StatelessWidget{
                            
                             String? postUrl = user?.edgeOwnerToTimelineMedia?.edges?[index].node?.displayUrl;
                             return UserPostItem(postUrl: postUrl,
-                            likeCounts: user?.edgeOwnerToTimelineMedia?.edges?[index].node?.edgeLikedBy?.count??0,
+                          
+                            likeCounts:model.formatFollowersAndLikes(user?.edgeOwnerToTimelineMedia?.edges?[index].node?.edgeLikedBy?.count??0),
+                            commentsCount: model.formatFollowersAndLikes(user?.edgeOwnerToTimelineMedia?.edges?[index].node?.edgeMediaToComment?.count??0),
                             );
                           }),
                       ),

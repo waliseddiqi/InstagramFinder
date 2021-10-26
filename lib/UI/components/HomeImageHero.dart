@@ -29,10 +29,10 @@ class PostImageHero extends StatelessWidget{
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(image: NetworkImage(postUrl??"",),fit: BoxFit.fitHeight)
+                          image: DecorationImage(image: NetworkImage(postUrl??"",),fit: BoxFit.cover)
                         ),
-                        height: size.height/1.7,
-                        width: size.aspectRatio*400,
+                        height: size.height/1.5,
+                        width: size.aspectRatio*500,
                       
                       ),
                     ),

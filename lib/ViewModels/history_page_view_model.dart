@@ -5,14 +5,21 @@ import 'package:stacked/stacked.dart';
 
 class HistoryPageViewModel extends BaseViewModel{
  
+  LocalStorageService _localStorageService = locator<LocalStorageService>();
 
 List<dynamic>? getSavedList(){
 
-  LocalStorageService localStorageService = locator<LocalStorageService>();
 
-  return  localStorageService.getFromDisk(LocalStorageService.historyListKey);
+  return  _localStorageService.getFromDisk(LocalStorageService.historyListKey);
 
 }
+
+
+void removeAllList(){
+ _localStorageService.clearAll();
+ notifyListeners();
+}
+
 
 
 

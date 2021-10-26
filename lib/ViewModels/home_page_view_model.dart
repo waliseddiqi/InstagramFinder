@@ -22,32 +22,34 @@ class ResultPageViewModel extends FutureViewModel<InstaUser>{
   }
 
  Future<InstaUser> getuser()async{
-    
-      
-    
     GetRequest requests =  locator<GetRequest>();
    
     ApiService apiService= new Api(requests);
-    
+  
     Response response =  await apiService.getInstagramUser(userName);
    
     InstaUser res =  InstaUser.fromJson(response.data);
     LocalStorageService localStorageService = locator<LocalStorageService>();
     localStorageService.saveStringItemToDisk(LocalStorageService.historyListKey, userName);
     return res;
- 
- 
- 
-  
     }
 
 
+  String formatFollowersAndLikes(int count){
+    if(count>5000&&count<1000000){
+      return "${(count/1000).toStringAsFixed(1)}K";
+    }else if(count>=1000000){
+      return "${(count/1000000).toStringAsFixed(1)}M";
+    }else{
+      return count.toString();
+    }
+  }
     
   
 
   @override
-  void onError(error) {
-   print(error.runtimeType.toString());
+  void onError(error)async {
+   ////for handling API calls error
     super.onError(error);
   }
 }

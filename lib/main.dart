@@ -1,4 +1,5 @@
 
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
 import 'package:instagramfinder/UI/SearchPage.dart';
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     ////setting up get it locator for dependecies 
       setUpLocator();
-  // getuser();
+
     super.initState();
   }
 
@@ -41,6 +42,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       title: 'Instagram Finer',
       debugShowCheckedModeBanner: false,
@@ -48,8 +50,10 @@ class _MyAppState extends State<MyApp> {
         
         primarySwatch: MaterialColor(0xFF5E69EE, color),
         scaffoldBackgroundColor: Color(0xFFF4F4FB),
-        secondaryHeaderColor: Color(0xFF8CB1F3)
+        secondaryHeaderColor: Color(0xFF8CB1F3),
+        
       ),
+     
       home: SearchPage(),
     );
   }

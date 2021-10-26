@@ -14,16 +14,16 @@ class ApiHandler{
       
         return httpResponse;
       case 400:
-        throw BadRequestException("");
+        throw Future.error(BadRequestException(""));
       case 401:
       case 403:
-        throw UnauthorisedException("");
+        throw Future.error( UnauthorisedException(""));
       case 500:
       // snackbarService.showCustomSnackBar(message: "Veri akışınız yavaşlandı",variant: SnackbarType.first);
-        throw BadRequestException("");
+        throw Future.error (BadRequestException(""));
       default:
-        throw FetchDataException(
-          'Error occured while Communication with Server with StatusCode: ${httpResponse.statusCode}');
+        throw Future.error(FetchDataException(
+          'Error occured while Communication with Server with StatusCode: ${httpResponse.statusCode}'));
     }
   }
 }
