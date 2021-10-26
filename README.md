@@ -31,6 +31,9 @@ BaseViewModel is exactly the same as ChangeNotifier but it has some parameters t
 I used SharedPreferences for saving data locally and use it for HistoryPage. 
 
 
+I was only able to run the app in android device and emulators. I have tested the UI responsive in different device using Device Preview package
+
+
 
 
 
