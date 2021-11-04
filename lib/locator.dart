@@ -7,9 +7,9 @@ import 'package:instagramfinder/Services/requests.dart';
 final locator = GetIt.instance;
 
 Future setUpLocator() async {
-  locator.registerLazySingleton<NonCachableRequest>(() => NonCachableRequest());
+  locator.registerFactory<NonCachableRequest>(() => NonCachableRequest());
   
-  locator.registerLazySingleton<GetRequest>(() => GetRequest());
+  locator.registerFactory<GetRequest>(() => GetRequest());
 
   var instance = await LocalStorageService.getInstance();
 

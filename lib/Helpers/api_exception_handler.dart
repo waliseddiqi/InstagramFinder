@@ -19,7 +19,6 @@ class ApiHandler{
       case 403:
         throw Future.error( UnauthorisedException(""));
       case 500:
-      // snackbarService.showCustomSnackBar(message: "Veri akışınız yavaşlandı",variant: SnackbarType.first);
         throw Future.error (BadRequestException(""));
       default:
         throw Future.error(FetchDataException(
